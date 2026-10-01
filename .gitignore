@@ -1,0 +1,4 @@
+mnist_data/
+trained_model.npz
+__pycache__/
+*.pyc
