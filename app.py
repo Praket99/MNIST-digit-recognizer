@@ -3,20 +3,14 @@ import numpy as np
 
 from neural_network import NeuralNetwork
 
-
-# ==========================================
 # SETTINGS
-# ==========================================
 
 SIZE = 28
 SPACING = 21
 PIXEL_SIZE = 14
 BRUSH_RADIUS = 1.5
 
-
-# ==========================================
 # LOAD TRAINED MODEL
-# ==========================================
 
 network = NeuralNetwork()
 
@@ -33,20 +27,14 @@ network.b3 = model["b3"]
 
 print("Trained model loaded!")
 
-
-# ==========================================
 # PIXEL DATA
-# ==========================================
 
 pixels = [
     [0.0 for _ in range(SIZE)]
     for _ in range(SIZE)
 ]
 
-
-# ==========================================
 # WINDOW
-# ==========================================
 
 root = tk.Tk()
 
@@ -63,10 +51,7 @@ canvas = tk.Canvas(
 
 canvas.pack(padx=10, pady=10)
 
-
-# ==========================================
 # CREATE GRID
-# ==========================================
 
 squares = [
     [None for _ in range(SIZE)]
@@ -101,9 +86,7 @@ for y in range(SIZE):
         )
 
 
-# ==========================================
 # DRAW
-# ==========================================
 
 def draw(event):
 
@@ -145,10 +128,7 @@ def draw(event):
 canvas.bind("<B1-Motion>", draw)
 canvas.bind("<Button-1>", draw)
 
-
-# ==========================================
 # CLEAR
-# ==========================================
 
 def clear():
 
@@ -235,27 +215,21 @@ def preprocess_image():
 
     return result.reshape(784)
 
-# ==========================================
 # PREDICT
-# ==========================================
 
 def predict():
 
     # Preprocess drawing to look more like MNIST
     image = preprocess_image()
 
-    # -------------------------
-    # Debug information
-    # -------------------------
+    # Debug
 
     print("\nPixel range:")
     print("Minimum:", image.min())
     print("Maximum:", image.max())
     print("Non-zero pixels:", np.count_nonzero(image))
 
-    # -------------------------
     # Neural network
-    # -------------------------
 
     probabilities = network.forward(image)
 
@@ -263,9 +237,7 @@ def predict():
 
     confidence = probabilities[prediction] * 100
 
-    # -------------------------
-    # Result on window
-    # -------------------------
+    # Result
 
     prediction_label.config(
         text=f"Prediction: {prediction}"
@@ -275,9 +247,7 @@ def predict():
         text=f"Confidence: {confidence:.2f}%"
     )
 
-    # -------------------------
     # Show all probabilities
-    # -------------------------
 
     print("\nPrediction:", prediction)
     print("Confidence:", f"{confidence:.2f}%")
@@ -291,9 +261,7 @@ def predict():
             f"{probabilities[digit] * 100:.2f}%"
         )
 
-# ==========================================
 # BUTTONS
-# ==========================================
 
 button_frame = tk.Frame(root)
 
@@ -327,10 +295,7 @@ clear_button.grid(
     padx=5
 )
 
-
-# ==========================================
 # RESULT
-# ==========================================
 
 prediction_label = tk.Label(
     root,
@@ -350,8 +315,6 @@ confidence_label = tk.Label(
 confidence_label.pack(pady=(0, 15))
 
 
-# ==========================================
 # START
-# ==========================================
 
 root.mainloop()

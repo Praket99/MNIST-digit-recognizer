@@ -43,7 +43,7 @@ for i in range (len(x_test)):
 
 accuracy = correct / len(x_test)
 
-print("\n===== TEST RESULTS =====")
+print("\n------TEST RESULTS------")
 print("Test images:", len(x_test))
 print(f"Correct: {correct}")
 print(f"Wrong: {len(x_test) - correct}")

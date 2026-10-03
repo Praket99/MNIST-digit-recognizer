@@ -82,6 +82,7 @@ for epoch in range(epochs):
     print(f"Average loss: {average_loss:.4f}")
     print(f"Accuracy: {accuracy * 100:.2f}%")
 
+
 #save trained model
 
 np.savez(

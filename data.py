@@ -1,3 +1,7 @@
+
+#this whole sectiom of code is copied from Chat-GPT
+#this code is used to download the MNIST dataset and load it into numpy arrays for training and testing the neural network
+
 import os
 import gzip
 import urllib.request
